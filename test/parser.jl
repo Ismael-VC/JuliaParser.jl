@@ -24,7 +24,7 @@ facts("test parse IOBuffer") do
 end
 
 facts("test parse IOStream") do
-    io = open("testfile")
+    io = open(joinpath(Pkg.dir("JuliaParser"), "test", "testfile"))
     res = Parser.parse(io)
     @fact res --> nothing
 end

@@ -110,12 +110,12 @@ const operators = union(Set([:(~), :(!), :(->), :(√), :(∛), :(∜), :(...), 
                              :(.'), SYM_CTRANSPOSE]),
 			                 [Set(ops) for ops in ops_by_precedent]...)
 
-const reserved_words = Set{Symbol}([:begin,  :while, :if, :for, :try, :return,
-                                    :break, :continue, :function, :stagedfunction,
-                                    :macro, :quote, :let, :local, :global, :const,
-                                    :abstract, :typealias, :type, :bitstype, :immutable,
-                                    :ccall, :do, :module, :baremodule, :using, :import,
-                                    :export, :importall])
+const reserved_words = Set{Symbol}([:empezar,  :mientras, :si, :por, :intentar, :retornar,
+                                    :romper, :continuar, :funcion, :functionetapas,
+                                    :macro, :comilla, :sea, :local, :global, :const,
+                                    :abstracto, :aliastipo, :tipo, :tipobits, :inmutable,
+                                    :llamarc, :hacer, :modulo, :modulorazo, :usando, :importar,
+                                    :exportar, :importartodo])
 #= Helper functions =#
 
 const operator_prescedence = let
@@ -310,7 +310,7 @@ type TokenStream
     filename::AbstractString
 end
 
-TokenStream(io::IO)      = TokenStream(io, 1, Void, Void, false, eof(io), "")
+TokenStream(io::IO) = TokenStream(io, 1, nothing, nothing, false, eof(io), "")
 TokenStream(str::AbstractString) = TokenStream(IOBuffer(str))
 
 eof(ts::TokenStream) = ts.ateof || eof(ts.io)
